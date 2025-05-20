@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+li.article {
+  text-decoration: none;
+  display: inline-block;
+  border: solid 1px white;
+  padding: 16px;
+  margin: 8px;
+  width: 20%;
+}
+
+li.article .article-image {
+  display: block;
+  max-height: 100px;
+  margin: 0 auto;
+}
+
+li.article .article-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+}
