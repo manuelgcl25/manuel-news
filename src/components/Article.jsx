@@ -12,7 +12,6 @@ function Article() {
     setIsLoading(true);
     fetchOneArticle(article_id)
       .then((articleFromApi) => {
-        console.log(articleFromApi);
         setArticle(articleFromApi);
       })
       .catch((err) => {
@@ -21,19 +20,19 @@ function Article() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [article_id]);
 
   if (error) {
     return <Error error={error} />;
   }
 
-  if (isLoading) {
+  if (isLoading || !article) {
     return <p>Loading...</p>;
   }
   return (
     <>
       <div>
-        <h1>hello</h1>
+        <h1>{article.title}</h1>
       </div>
     </>
   );

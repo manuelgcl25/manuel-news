@@ -6,14 +6,12 @@ const newsApi = axios.create({
 
 const fetchAllArticles = () => {
   return newsApi.get("/articles").then((response) => {
-    // console.log(response.data);
     return response.data.articles;
   });
 };
 
 const fetchOneArticle = (article_id) => {
   return newsApi.get(`/articles/${article_id}`).then((response) => {
-    console.log(response.data);
     return response.data.articles[0];
   });
 };
