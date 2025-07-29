@@ -11,4 +11,11 @@ const fetchAllArticles = () => {
   });
 };
 
-export { fetchAllArticles };
+const fetchOneArticle = (article_id) => {
+  return newsApi.get(`/articles/${article_id}`).then((response) => {
+    console.log(response.data);
+    return response.data.articles[0];
+  });
+};
+
+export { fetchAllArticles, fetchOneArticle };
