@@ -29,10 +29,40 @@ function Article() {
   if (isLoading || !article) {
     return <p>Loading...</p>;
   }
+
+  const articleDate = article.created_at.slice(0, 10);
+
   return (
     <>
       <div>
-        <h1>{article.title}</h1>
+        <h3 className="article-author">Author: {article.author}</h3>
+        <h3 className="article-votes">Votes: {article.votes}</h3>
+        <h3 className="article-topic">Topic: {article.topic}</h3>
+        <h3 className="article-comment-count">
+          Comments: {article.comment_count}
+        </h3>
+        <div>
+          <main className="main-content">
+            <article>
+              <header>
+                <h1 id="main-heading" type="headline">
+                  <span role="text">{article.title}</span>
+                </h1>
+              </header>
+            </article>
+          </main>
+        </div>
+        <div>
+          <img
+            className="article-image"
+            src={article.article_img_url}
+            alt="article-img"
+          />
+          <div className="article-body">{article.body}</div>
+        </div>
+        <br />
+        <text>Date: {articleDate}</text>
+        <br />
       </div>
     </>
   );

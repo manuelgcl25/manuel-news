@@ -62,3 +62,15 @@ li.article .article-title {
   display: block;
   overflow: hidden;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  /* padding-left: 50%; */
+}
+
+.article-body {
+  max-width: 100%;
+  height: auto;
+  /* padding-bottom: 50%; */
+}
