@@ -1,6 +1,7 @@
 import { fetchOneArticle } from "../api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 
 function Article() {
   const [article, setArticle] = useState(null);
@@ -63,6 +64,9 @@ function Article() {
         <br />
         <text>Date: {articleDate}</text>
         <br />
+      </div>
+      <div>
+        <Comments article_id={article_id}></Comments>
       </div>
     </>
   );
