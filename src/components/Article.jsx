@@ -2,11 +2,13 @@ import { fetchOneArticle } from "../api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+import Vote from "./Vote";
 
 function Article() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  console.log(article);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -38,6 +40,7 @@ function Article() {
       <div>
         <h3 className="article-author">Author: {article.author}</h3>
         <h3 className="article-votes">Votes: {article.votes}</h3>
+        <Vote article={article}></Vote>
         <h3 className="article-topic">Topic: {article.topic}</h3>
         <h3 className="article-comment-count">
           Comments: {article.comment_count}
