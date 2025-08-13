@@ -8,7 +8,8 @@ function Article() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log(article);
+  const [votes, setVotes] = useState(0);
+  // console.log(article);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -16,6 +17,7 @@ function Article() {
     fetchOneArticle(article_id)
       .then((articleFromApi) => {
         setArticle(articleFromApi);
+        setVotes(articleFromApi.votes);
       })
       .catch((err) => {
         setError(err);
@@ -39,8 +41,8 @@ function Article() {
     <>
       <div>
         <h3 className="article-author">Author: {article.author}</h3>
-        <h3 className="article-votes">Votes: {article.votes}</h3>
-        <Vote article={article}></Vote>
+        <h3 className="article-votes">Votes: {votes}</h3>
+        <Vote votes={votes} setVotes={setVotes} article_id={article_id}></Vote>
         <h3 className="article-topic">Topic: {article.topic}</h3>
         <h3 className="article-comment-count">
           Comments: {article.comment_count}

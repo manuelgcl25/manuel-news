@@ -1,31 +1,30 @@
+import { updateArticleVotes } from "../api";
+import React from "react";
 import { useState } from "react";
 
-function Vote({ article }) {
-  console.log(article.votes);
-  const [votes, setVotes] = useState(article.votes);
-  const handleSubmit = () => {
-    // event.preventDefault();
+function Vote({ article_id, votes, setVotes }) {
+  const [upvoteButton, setUpvoteButton] = useState("Upvote");
+
+  const handleUpvote = () => {
     setVotes(votes + 1);
+    updateArticleVotes(article_id, 1);
+    setUpvoteButton("Upvoted");
   };
 
-  //   const handleDownvote = () => {
-  //     // event.preventDefault();
-  //     setVotes(votes - 1);
-  //   };
+  const handleDownvote = () => {
+    setVotes(votes - 1);
+    updateArticleVotes(article_id, -1);
+  };
 
   return (
     <>
-      <div className="upvote">
-        <form onSubmit={handleSubmit}>
-          <button type="submit">Upvote</button>
-        </form>
+      <div className={upvoteButton}>
+        <button onClick={handleUpvote}>{upvoteButton}</button>
       </div>
-
-      {/* <div className="downvote">
-        <form onHandleDownvote={handleDownvote}>
-          <button type="submit">Downvote</button>
-        </form>
-      </div> */}
+      <br />
+      <div className="downvote">
+        <button onClick={handleDownvote}>Downvote</button>
+      </div>
     </>
   );
 }
