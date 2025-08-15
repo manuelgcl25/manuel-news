@@ -75,5 +75,10 @@ img {
   /* padding-bottom: 50%; */
 }
 
-.upvoteButton {
+.Upvoted {
+  background-color: #008000;
+}
+
+.Downvoted {
+  background-color: #ff0000;
 }

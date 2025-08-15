@@ -3,27 +3,53 @@ import React from "react";
 import { useState } from "react";
 
 function Vote({ article_id, votes, setVotes }) {
+  const [isUpvoteClicked, setIsUpvoteClicked] = useState(false);
+  const [isDownvoteClicked, setIsDownvoteClicked] = useState(false);
   const [upvoteButton, setUpvoteButton] = useState("Upvote");
+  const [downButton, setDownButton] = useState("Downvote");
+
+  // need to persist in the backend if it's upvoted or not so when we refresh the one article page it still reflects as upvoted/downvoted
 
   const handleUpvote = () => {
-    setVotes(votes + 1);
-    updateArticleVotes(article_id, 1);
-    setUpvoteButton("Upvoted");
+    if (isUpvoteClicked === false) {
+      setUpvoteButton("Upvoted");
+      setVotes(votes + 1);
+      updateArticleVotes(article_id, 1);
+      setIsUpvoteClicked(!isUpvoteClicked);
+    } else {
+      setUpvoteButton("Upvote");
+      setVotes(votes - 1);
+      updateArticleVotes(article_id, -1);
+      setIsUpvoteClicked(!isUpvoteClicked);
+    }
   };
-
+  // need to persist in the backend if it's downvoted or not so when we refresh the one article page it still reflects as upvoted/downvoted
   const handleDownvote = () => {
-    setVotes(votes - 1);
-    updateArticleVotes(article_id, -1);
+    if (isDownvoteClicked === false) {
+      setDownButton("Downvoted");
+      setVotes(votes - 1);
+      updateArticleVotes(article_id, -1);
+      setIsDownvoteClicked(!isDownvoteClicked);
+    } else {
+      setDownButton("Downvote");
+      setVotes(votes + 1);
+      updateArticleVotes(article_id, +1);
+      setIsDownvoteClicked(!isDownvoteClicked);
+    }
   };
 
   return (
     <>
-      <div className={upvoteButton}>
-        <button onClick={handleUpvote}>{upvoteButton}</button>
+      <div>
+        <button className={upvoteButton} onClick={handleUpvote}>
+          {upvoteButton}
+        </button>
       </div>
       <br />
-      <div className="downvote">
-        <button onClick={handleDownvote}>Downvote</button>
+      <div>
+        <button className={downButton} onClick={handleDownvote}>
+          {downButton}
+        </button>
       </div>
     </>
   );
